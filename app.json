@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Tamagui Starter",
-    "slug": "expo-router-example",
+    "slug": "tamagui-starter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
