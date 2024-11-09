@@ -18,6 +18,7 @@ export default function TabLayout() {
           borderBottomColor: theme.borderColor.val,
         },
         headerTintColor: theme.color.val,
+        // headerShown: false,
       }}
     >
       <Tabs.Screen
