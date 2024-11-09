@@ -6,7 +6,8 @@ export default function TabTwoScreen() {
       <Text fontSize={20} color="$blue10">
         Tab Two
       </Text>
-      <Button mt={20}>Hello World!</Button>
+      <Button mt={'$5'} size={'$6'}>Hello World!</Button>
+      <Button mt={'$5'} size={'$5'}>Hello World !</Button>
     </View>
   )
 }
