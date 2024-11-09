@@ -1,4 +1,4 @@
-import { Text, View } from 'tamagui'
+import {Button, Text, View} from 'tamagui'
 
 export default function TabTwoScreen() {
   return (
@@ -6,6 +6,7 @@ export default function TabTwoScreen() {
       <Text fontSize={20} color="$blue10">
         Tab Two
       </Text>
+      <Button mt={20}>Hello World!</Button>
     </View>
   )
 }
