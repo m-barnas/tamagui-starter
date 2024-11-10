@@ -17,14 +17,14 @@ export default {
   dark: {
     brandColor: brand.brand11,
 
-    brandBackground: brand.brand6,
-    brandBorder: brand.brand6,
+    brandBackground: brand.brand5,
+    brandBorder: brand.brand5,
 
-    brandBackgroundHover: brand.brand5,
+    brandBackgroundHover: brand.brand4,
     brandBorderHover: brand.brand8,
 
-    brandBackgroundPressed: brand.brand4,
-    brandBorderPressed: brand.brand7,
+    brandBackgroundPressed: brand.brand3,
+    brandBorderPressed: brand.brand5,
   },
   light: {
     brandColor: brand.brand5,

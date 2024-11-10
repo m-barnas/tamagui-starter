@@ -9,7 +9,7 @@ export default function TabTwoScreen() {
 
   return (
     <ScrollView bg="$background" px={'$4'}>
-      <H2 color="$blue10">Tab Two</H2>
+      <H2 color="$brand10" mb="$6">Tab Two</H2>
 
       <YStack gap="$4">
         <XStack justifyContent={'center'}>
@@ -25,17 +25,16 @@ export default function TabTwoScreen() {
               </Checkbox>
 
               <Form.Trigger asChild>
-                <BrandButton icon={CheckCircle}>
-                  <Button.Text>Submit</Button.Text>
-                </BrandButton>
+                <Button>
+                  Submit
+                </Button>
+                {/*<BrandButton icon={CheckCircle}>*/}
+                {/*  <Button.Text>Submit</Button.Text>*/}
+                {/*</BrandButton>*/}
               </Form.Trigger>
             </Form>
 
-            <Button br={'100px'}>
-              Cancel
-            </Button>
-
-            <Button br={'100px'} variant={'outlined'}>
+            <Button variant={'outlined'}>
               Cancel
             </Button>
 
@@ -45,7 +44,7 @@ export default function TabTwoScreen() {
           </YStack>
         </XStack>
 
-        <XStack ai="center" jc="center" fw="wrap" gap="$1.5" b="-200px" pos="absolute">
+        <XStack ai="center" jc="center" fw="wrap" gap="$1.5" mt="$12">
           <Paragraph fos="$5">Add</Paragraph>
 
           <Paragraph fos="$5" px="$2" py="$1" col="$brand10" bg="$brand5">
