@@ -6,7 +6,7 @@ export const BrandButton = styled(Button, {
   backgroundColor: '$brandBackground',
   color: '$brandColor',
   borderColor: '$brandBorder',
-  borderRadius: '100px',
+  cursor: 'pointer',
 
   hoverStyle: {
     backgroundColor: '$brandBackgroundHover',
