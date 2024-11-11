@@ -1,6 +1,5 @@
 import {Anchor, Button, Checkbox, Form, H2, Input, Label, Paragraph, ScrollView, XStack, YStack} from 'tamagui'
-import {Check, CheckCircle, ExternalLink} from "@tamagui/lucide-icons";
-import {BrandButton} from "../../components/BrandButton";
+import {Check, ExternalLink} from "@tamagui/lucide-icons";
 
 export default function TabTwoScreen() {
   const onSubmitHandler = () => {
@@ -9,14 +8,14 @@ export default function TabTwoScreen() {
 
   return (
     <ScrollView bg="$background" px={'$4'}>
-      <H2 color="$brand10" mb="$6">Tab Two</H2>
+      <H2 mb="$6">Tab Two</H2>
 
       <YStack gap="$4">
         <XStack justifyContent={'center'}>
           <YStack $gtLg={{ w: '400px' }} w={'100%'} gap={'$4'}>
             <Form onSubmit={onSubmitHandler}>
               <Label htmlFor={'name'} px={'$4'}>Name</Label>
-              <Input id="name" defaultValue={'0'}/>
+              <Input id="name" placeholder={'Martin Barnas'}/>
 
               <Checkbox size={'$5'} my={'$4'}>
                 <Checkbox.Indicator>
@@ -25,9 +24,12 @@ export default function TabTwoScreen() {
               </Checkbox>
 
               <Form.Trigger asChild>
-                <Button>
+                <Button themeInverse>
                   Submit
                 </Button>
+                {/*<Button themeInverse>*/}
+                {/*  Submit*/}
+                {/*</Button>*/}
                 {/*<BrandButton icon={CheckCircle}>*/}
                 {/*  <Button.Text>Submit</Button.Text>*/}
                 {/*</BrandButton>*/}
@@ -38,11 +40,43 @@ export default function TabTwoScreen() {
               Cancel
             </Button>
 
+
             {/*<Button br={'100px'} bg="$brand6" color="$brand11">*/}
             {/*  Cancel*/}
             {/*</Button>*/}
           </YStack>
         </XStack>
+
+        {/*<LinearGradient*/}
+        {/*    width="$6"*/}
+        {/*    height="$6"*/}
+        {/*    borderRadius="$4"*/}
+        {/*    colors={['$black10', '$brand8']}*/}
+        {/*    start={[0, 1]}*/}
+        {/*    end={[0, 0]}*/}
+        {/*/>*/}
+
+        {/*<XStack mt="$4">*/}
+        {/*  /!* tokens *!/*/}
+        {/*  <LinearGradient*/}
+        {/*      width="$6"*/}
+        {/*      height="$6"*/}
+        {/*      borderRadius="$4"*/}
+        {/*      colors={['$red10', '$yellow10']}*/}
+        {/*      start={[0, 1]}*/}
+        {/*      end={[0, 0]}*/}
+        {/*  />*/}
+
+        {/*  /!* theme values *!/*/}
+        {/*  <LinearGradient*/}
+        {/*      width="$6"*/}
+        {/*      height="$6"*/}
+        {/*      borderRadius="$4"*/}
+        {/*      colors={['$background', '$color']}*/}
+        {/*      start={[1, 1]}*/}
+        {/*      end={[0, 0]}*/}
+        {/*  />*/}
+        {/*</XStack>*/}
 
         <XStack ai="center" jc="center" fw="wrap" gap="$1.5" mt="$12">
           <Paragraph fos="$5">Add</Paragraph>
