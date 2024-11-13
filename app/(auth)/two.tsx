@@ -1,6 +1,5 @@
-import {Button, Checkbox, Form, H2, Input, Label, ScrollView, Theme, XStack, YStack} from 'tamagui'
+import {Button, Checkbox, Form, H2, Input, Label, ScrollView, XStack, YStack} from 'tamagui'
 import {Check} from "@tamagui/lucide-icons";
-import {BrandButton} from "../../components/BrandButton";
 import React from "react";
 
 export default function TabTwoScreen() {
@@ -35,8 +34,6 @@ export default function TabTwoScreen() {
             <Button variant={'outlined'}>
               Cancel
             </Button>
-
-            <BrandButton>Brand</BrandButton>
 
           </YStack>
         </XStack>

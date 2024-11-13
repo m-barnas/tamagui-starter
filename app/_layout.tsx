@@ -14,11 +14,6 @@ export {
   ErrorBoundary,
 } from 'expo-router'
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: 'index',
-}
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
@@ -52,12 +47,15 @@ const RootLayout = () => {
   }, []);
 
   useEffect(() => {
-    console.log(segments);
-    if (!initialized || !segments.length) return;
+    console.log("Check what's going on with the session", session?.user);
+    console.log("Check what's going on with the segments", segments);
+    if (!initialized) return;
 
     const isAccessingAuthContent = segments[0] === "(auth)";
     if (!session && isAccessingAuthContent) {
-      router.replace("/");
+      router.replace("/login");
+    } else if (session && !isAccessingAuthContent) {
+      router.replace("/(auth)");
     }
   }, [initialized, session, segments]);
 
@@ -83,7 +81,7 @@ const RootLayoutNav = () => {
       <StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} />
       <Stack>
         <Stack.Screen
-            name="index"
+            name="login"
             options={{
               headerShown: false,
             }}

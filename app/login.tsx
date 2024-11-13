@@ -21,7 +21,6 @@ const Page = () => {
       Alert.alert(error.message);
     }
     setLoading(false);
-    router.replace('/(auth)');
   }
 
   const onSignUpHandler = async () => {
@@ -34,13 +33,12 @@ const Page = () => {
       Alert.alert(error.message);
     }
     setLoading(false);
-    router.replace('/(auth)');
   }
 
   return (
       <View bg="$background">
-        <XStack justifyContent={'center'} h={'100%'}>
-          <YStack justifyContent={'center'} $gtLg={{ maxWidth: '400px' }} w={'100%'} h={'100%'} gap={'$4'} p={"$4"} maxWidth={"350px"}>
+        <XStack h={'100%'} justifyContent={"center"}>
+          <YStack justifyContent={'flex-start'} mt={"$16"} $gtLg={{ maxWidth: '400px' }} w={'100%'} h={'100%'} gap={'$4'} p={"$6"} maxWidth={"350px"}>
             <Form onSubmit={onSignInHandler}>
 
               <Label htmlFor={'email'}>Email</Label>

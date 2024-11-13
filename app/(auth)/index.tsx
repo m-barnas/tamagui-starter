@@ -1,13 +1,29 @@
-import { ExternalLink } from '@tamagui/lucide-icons'
-import { Anchor, H2, Paragraph, XStack, YStack } from 'tamagui'
-import { ToastControl } from 'app/CurrentToast'
+import {ExternalLink} from '@tamagui/lucide-icons'
+import {Anchor, H2, Paragraph, XStack, YStack} from 'tamagui'
+import {ToastControl} from 'app/CurrentToast'
+import {BrandButton} from "../../components/BrandButton";
+import React from "react";
+import {supabase} from "../../utils/supabase";
+import {Alert} from "react-native";
 
 export default function TabOneScreen() {
+  const onLogoutHandler = async () => {
+    console.log("onLogoutHandler");
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      Alert.alert(error.message);
+    } else {
+      console.log("Signed out");
+    }
+  }
+
   return (
     <YStack f={1} ai="center" gap="$8" px="$10" pt="$5" bg="$background">
       <H2>Tamagui + Expo</H2>
 
       <ToastControl />
+
+      <BrandButton onPress={onLogoutHandler}>Logout</BrandButton>
 
       <XStack ai="center" jc="center" fw="wrap" gap="$1.5" pos="absolute" b="$8">
         <Paragraph fos="$5">Add</Paragraph>
