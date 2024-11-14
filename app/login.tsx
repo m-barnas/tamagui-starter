@@ -2,14 +2,12 @@ import {Button, Form, Input, Label, Spinner, Text, View, XStack, YStack} from 't
 import React, {useState} from "react";
 import {supabase} from "../utils/supabase";
 import {Alert} from "react-native";
-import {useRouter} from "expo-router";
 
 const Page = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState('Loading...');
-  const router = useRouter();
 
   const onSignInHandler = async () => {
     console.log(`Sign in with email: ${email} and password: ${password}`);

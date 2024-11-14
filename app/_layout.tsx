@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react'
 import {StatusBar, useColorScheme} from 'react-native'
 import {DarkTheme, DefaultTheme, ThemeProvider} from '@react-navigation/native'
 import {useFonts} from 'expo-font'
-import {SplashScreen, Stack, useRouter, useSegments} from 'expo-router'
+import {Slot, SplashScreen, useRouter, useSegments} from 'expo-router'
 import {Provider} from './Provider'
 import {supabase} from "../utils/supabase";
 import {Session} from '@supabase/supabase-js'
@@ -13,6 +13,11 @@ export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router'
+
+export const unstable_settings = {
+  // Ensure that reloading on `/modal` keeps a back button present.
+  initialRouteName: 'login',
+}
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -28,11 +33,11 @@ const RootLayout = () => {
   })
 
   useEffect(() => {
-    if (interLoaded || interError) {
+    if ((interLoaded || interError) && initialized) {
       // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
       SplashScreen.hideAsync()
     }
-  }, [interLoaded, interError]);
+  }, [interLoaded, interError, initialized]);
 
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -49,7 +54,7 @@ const RootLayout = () => {
   useEffect(() => {
     console.log("Check what's going on with the session", session?.user);
     console.log("Check what's going on with the segments", segments);
-    if (!initialized) return;
+    if (!initialized || (!interLoaded && !interError)) return;
 
     const isAccessingAuthContent = segments[0] === "(auth)";
     if (!session && isAccessingAuthContent) {
@@ -57,9 +62,9 @@ const RootLayout = () => {
     } else if (session && !isAccessingAuthContent) {
       router.replace("/(auth)");
     }
-  }, [initialized, session, segments]);
+  }, [interLoaded, initialized, session, segments]);
 
-  if (!interLoaded && !interError) {
+  if ((!interLoaded && !interError) || !initialized) {
     return null;
   }
 
@@ -79,20 +84,7 @@ const RootLayoutNav = () => {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} />
-      <Stack>
-        <Stack.Screen
-            name="login"
-            options={{
-              headerShown: false,
-            }}
-        />
-        <Stack.Screen
-            name="(auth)" // Protected screens for authenticated users
-            options={{
-              headerShown: false,
-            }}
-        />
-      </Stack>
+      <Slot/>
     </ThemeProvider>
   )
 }
