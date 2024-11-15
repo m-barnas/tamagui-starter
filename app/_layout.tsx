@@ -1,11 +1,9 @@
 import '../tamagui-web.css'
 
 import {useEffect, useState} from 'react'
-import {StatusBar, useColorScheme} from 'react-native'
-import {DarkTheme, DefaultTheme, ThemeProvider} from '@react-navigation/native'
 import {useFonts} from 'expo-font'
 import {Slot, SplashScreen, useRouter, useSegments} from 'expo-router'
-import {Provider} from './Provider'
+import {Providers} from '../components/Providers'
 import {supabase} from "../utils/supabase";
 import {Session} from '@supabase/supabase-js'
 
@@ -16,7 +14,7 @@ export {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: 'login',
+  initialRouteName: 'sign-in',
 }
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -58,7 +56,7 @@ const RootLayout = () => {
 
     const isAccessingAuthContent = segments[0] === "(auth)";
     if (!session && isAccessingAuthContent) {
-      router.replace("/login");
+      router.replace("/sign-in");
     } else if (session && !isAccessingAuthContent) {
       router.replace("/(auth)");
     }
@@ -70,22 +68,9 @@ const RootLayout = () => {
 
   return (
     <Providers>
-      <RootLayoutNav />
+      <Slot/>
     </Providers>
   )
 }
 
-const Providers = ({ children }: { children: React.ReactNode }) => {
-  return <Provider>{children}</Provider>
-}
-
-const RootLayoutNav = () => {
-  const colorScheme = useColorScheme();
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} />
-      <Slot/>
-    </ThemeProvider>
-  )
-}
 export default RootLayout;

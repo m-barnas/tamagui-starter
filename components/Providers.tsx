@@ -1,10 +1,11 @@
-import { useColorScheme } from 'react-native'
+import {StatusBar, useColorScheme} from 'react-native'
 import { TamaguiProvider, type TamaguiProviderProps } from 'tamagui'
 import { ToastProvider, ToastViewport } from '@tamagui/toast'
 import { CurrentToast } from './CurrentToast'
 import { config } from '../tamagui.config'
+import {DarkTheme, DefaultTheme, ThemeProvider} from "@react-navigation/native";
 
-export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'config'>) {
+export function Providers({ children, ...rest }: Omit<TamaguiProviderProps, 'config'>) {
   const colorScheme = useColorScheme()
 
   return (
@@ -23,7 +24,10 @@ export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'conf
           ]
         }
       >
-        {children}
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} />
+          {children}
+        </ThemeProvider>
         <CurrentToast />
         <ToastViewport top="$8" left={0} right={0} />
       </ToastProvider>
